@@ -79,7 +79,7 @@ class CategoryMenu(CMSAttachMenu):
         """
         nodes = []
         nodes.append(NavigationNode(_('Categories'),
-                                    reverse('zinnia:category_list', current_app='zinnia'),
+                                    reverse('category_list'),
                                     'categories'))
         for category in Category.objects.all():
             nodes.append(NavigationNode(category.title,
@@ -100,7 +100,7 @@ class AuthorMenu(CMSAttachMenu):
         """
         nodes = []
         nodes.append(NavigationNode(_('Authors'),
-                                    reverse('zinnia:author_list', current_app='zinnia'),
+                                    reverse('author_list'),
                                     'authors'))
         for author in Author.published.all():
             nodes.append(NavigationNode(author.__unicode__(),
@@ -120,11 +120,11 @@ class TagMenu(CMSAttachMenu):
         Return menu's node for tags
         """
         nodes = []
-        nodes.append(NavigationNode(_('Tags'), reverse('zinnia:tag_list', current_app='zinnia'),
+        nodes.append(NavigationNode(_('Tags'), reverse('tag_list'),
                                     'tags'))
         for tag in tags_published():
             nodes.append(NavigationNode(tag.name,
-                                        reverse('zinnia:tag_detail',
+                                        reverse('tag_detail',
                                                 args=[tag.name]),
                                         tag.pk, 'tags'))
         return nodes
